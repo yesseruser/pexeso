@@ -9,6 +9,7 @@ obrazky = []
 
 def nacteni_obrazku():
     for index in range(0, 9, 1):
+        pygame.transform.smoothscale(pygame.image.load("obrazky/" + str(index) + ".png"),(150, 150))
         obrazky.append(pygame.image.load("obrazky/" + str(index) + ".png"))
 
 
