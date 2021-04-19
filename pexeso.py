@@ -2,15 +2,20 @@ import pygame
 
 pygame.init()
 
-pygame.display.set_mode((700, 700))
+okno = pygame.display.set_mode((700, 700))
 
 obrazky = []
 
 
 def nacteni_obrazku():
-    index = 0
     for index in range(0, 9, 1):
         obrazky.append(pygame.image.load("obrazky/" + str(index) + ".png"))
+
+
+def kresleni_karticek():
+    for sloupec in range(0, 4, 1):
+        okno.blit(obrazky[0], (sloupec * 150 + (sloupec + 1) * 20, 20))
+    pygame.display.flip()
 
 
 run = True
