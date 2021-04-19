@@ -9,9 +9,8 @@ obrazky = []
 
 def nacteni_obrazku():
     index = 0
-    while index < 9:
+    for index in range(0, 9, 1):
         obrazky.append(pygame.image.load("obrazky/" + str(index) + ".png"))
-        index += 1
 
 
 run = True
