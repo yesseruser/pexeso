@@ -1,10 +1,18 @@
 import pygame
+
 pygame.init()
 
 pygame.display.set_mode((700, 700))
 
+obrazky = []
+
+
 def nacteni_obrazku():
-    pass
+    index = 0
+    while index < 9:
+        obrazky.append(pygame.image.load("obrazky/" + str(index) + ".png"))
+        index += 1
+
 
 run = True
 while run:
