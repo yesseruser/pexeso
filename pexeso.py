@@ -19,6 +19,8 @@ def kresleni_karticek():
     pygame.display.flip()
 
 
+nacteni_obrazku()
+
 run = True
 while run:
     for event in pygame.event.get():
