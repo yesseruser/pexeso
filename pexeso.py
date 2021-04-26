@@ -8,6 +8,8 @@ pygame.init()
 okno: Surface = pygame.display.set_mode((700, 700))
 obrazky = []
 
+prvni_karticka = (0, 0)
+druha_karticka = (-1, -1)
 
 def nacteni_obrazku():
     """
@@ -27,9 +29,14 @@ def kresleni_karticek():
     """
     Draws all the cards in a line
     """
-    for sloupec in range(0, 4, 1):
-        souradnice: tuple[Union[int, Any], int] = (sloupec * 150 + (sloupec + 1) * 20, 20)
-        okno.blit(obrazky[0], souradnice)
+    for radek in range(0, 4, 1):
+        for sloupec in range(0, 4, 1):
+            souradnice: tuple[Union[int, Any], int] = (sloupec * 150 + (sloupec + 1) * 20, radek * 150 + (radek + 1) * 20)
+            if prvni_karticka == (radek, sloupec):
+                okno.blit(obrazky[1], souradnice)
+            else:
+                okno.blit(obrazky[0], souradnice)
+            okno.blit(obrazky[0], souradnice)
     pygame.display.flip()
 
 
