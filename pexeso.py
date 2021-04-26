@@ -6,7 +6,6 @@ from pygame.surface import Surface
 pygame.init()
 
 okno: Surface = pygame.display.set_mode((700, 700))
-souradnice: tuple[Union[int, Any], int] = (sloupec * 150 + (sloupec + 1) * 20, 20)
 obrazky = []
 
 
@@ -29,6 +28,7 @@ def kresleni_karticek():
     Draws all the cards in a line
     """
     for sloupec in range(0, 4, 1):
+        souradnice: tuple[Union[int, Any], int] = (sloupec * 150 + (sloupec + 1) * 20, 20)
         okno.blit(obrazky[0], souradnice)
     pygame.display.flip()
 
@@ -40,3 +40,11 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            run = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mx, my = event.pos
+            print(mx, my)
+            x, y = mx // 170, my // 170
+            print(x, y)
+        kresleni_karticek()
