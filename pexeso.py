@@ -46,7 +46,12 @@ def kontrola_karticek():
     prvni_cislo = karticky[y1, y2]
     x2, y2 = druha_karticka
     druhe_cislo = karticky[y1, y2]
-
+    if prvni_cislo == druhe_cislo:
+        karticky[y1][x1] = -1
+        karticky[y2][x2] = -1
+    else:
+        prvni_karticka = (-1, -1)
+        druha_karticka = (-1, -1)
 nacteni_obrazku()
 
 run = True
