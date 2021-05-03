@@ -45,9 +45,9 @@ def kresleni_karticek():
 def kontrola_karticek():
     global prvni_karticka, druha_karticka
     x1, y1 = prvni_karticka
-    prvni_cislo = karticky[y1][y2]
+    prvni_cislo = karticky[y1][x1]
     x2, y2 = druha_karticka
-    druhe_cislo = karticky[y1][y2]
+    druhe_cislo = karticky[y2][x2]
     if prvni_cislo == druhe_cislo:
         karticky[y1][x1] = -1
         karticky[y2][x2] = -1
