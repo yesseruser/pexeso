@@ -34,7 +34,7 @@ def kresleni_karticek():
             souradnice: tuple[Union[int, Any], int] = (sloupec * 150 + (sloupec + 1) * 20, radek * 150 + (radek + 1) * 20)
             if prvni_karticka == (radek, sloupec):
                 okno.blit(obrazky[1], souradnice)
-                okno.blit(obrazky[kart])
+                okno.blit(obrazky[prvni_karticka], souradnice)
             else:
                 okno.blit(obrazky[0], souradnice)
             okno.blit(obrazky[0], souradnice)
