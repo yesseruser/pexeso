@@ -40,6 +40,12 @@ def kresleni_karticek():
             okno.blit(obrazky[0], souradnice)
     pygame.display.flip()
 
+def kontrola_karticek():
+    global prvni_karticka, druha_karticka
+    x1, y1 = prvni_karticka
+    prvni_cislo = karticky[y1, y2]
+    x2, y2 = druha_karticka
+    druhe_cislo = karticky[y1, y2]
 
 nacteni_obrazku()
 
