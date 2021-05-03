@@ -8,7 +8,7 @@ pygame.init()
 okno = pygame.display.set_mode((700, 700))
 obrazky = []
 
-prvni_karticka = (0, 0)
+prvni_karticka = (-1, -1)
 druha_karticka = (-1, -1)
 
 def nacteni_obrazku():
@@ -16,8 +16,8 @@ def nacteni_obrazku():
     Loads all Pictures
     """
     for index in range(0, 9, 1):
-        pygame.transform.smoothscale(pygame.image.load("obrazky/" + str(index) + ".png"),(150, 150))
-        obrazky.append(pygame.image.load("obrazky/" + str(index) + ".png"))
+        obrazek = pygame.transform.smoothscale(pygame.image.load("obrazky/" + str(index) + ".png"),(150, 150))
+        obrazky.append(obrazek)
 
 karticky = [
     [1, 2, 5, 7],
@@ -29,17 +29,16 @@ def kresleni_karticek():
     """
     Draws all the cards in a line
     """
+    okno.fill((0, 0, 0))
     for radek in range(0, 4, 1):
         for sloupec in range(0, 4, 1):
             karticka = karticky[radek][sloupec]
             if karticka != -1:
                 souradnice: tuple[int, int] = (sloupec * 150 + (sloupec + 1) * 20, radek * 150 + (radek + 1) * 20)
-                if prvni_karticka == (radek, sloupec):
-                    okno.blit(obrazky[1], souradnice)
+                if prvni_karticka == (sloupec, radek):
                     okno.blit(obrazky[karticka], souradnice)
                 else:
                     okno.blit(obrazky[0], souradnice)
-                okno.blit(obrazky[0], souradnice)
     pygame.display.flip()
 
 def kontrola_karticek():
@@ -71,8 +70,4 @@ while run:
             elif prvni_karticka != karticka:
                 druha_karticka = karticka
                 kontrola_karticek()
-            print(mx, my)
-            x, y = mx // 170, my // 170
-            print(x, y)
-            prvni_karticka = x, y
         kresleni_karticek()
