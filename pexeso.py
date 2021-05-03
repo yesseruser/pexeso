@@ -5,7 +5,7 @@ from pygame.surface import Surface
 
 pygame.init()
 
-okno: Surface = pygame.display.set_mode((700, 700))
+okno = pygame.display.set_mode((700, 700))
 obrazky = []
 
 prvni_karticka = (0, 0)
@@ -19,7 +19,7 @@ def nacteni_obrazku():
         pygame.transform.smoothscale(pygame.image.load("obrazky/" + str(index) + ".png"),(150, 150))
         obrazky.append(pygame.image.load("obrazky/" + str(index) + ".png"))
 
-karticky: list[list[int]] = [
+karticky = [
     [1, 2, 5, 7],
     [5, 6, 3, 4],
     [6, 7, 8, 3],
@@ -31,21 +31,23 @@ def kresleni_karticek():
     """
     for radek in range(0, 4, 1):
         for sloupec in range(0, 4, 1):
-            souradnice: tuple[Union[int, Any], int] = (sloupec * 150 + (sloupec + 1) * 20, radek * 150 + (radek + 1) * 20)
-            if prvni_karticka == (radek, sloupec):
-                okno.blit(obrazky[1], souradnice)
-                okno.blit(obrazky[prvni_karticka], souradnice)
-            else:
+            karticka = karticky[radek][sloupec]
+            if karticka != -1:
+                souradnice: tuple[int, int] = (sloupec * 150 + (sloupec + 1) * 20, radek * 150 + (radek + 1) * 20)
+                if prvni_karticka == (radek, sloupec):
+                    okno.blit(obrazky[1], souradnice)
+                    okno.blit(obrazky[karticka], souradnice)
+                else:
+                    okno.blit(obrazky[0], souradnice)
                 okno.blit(obrazky[0], souradnice)
-            okno.blit(obrazky[0], souradnice)
     pygame.display.flip()
 
 def kontrola_karticek():
     global prvni_karticka, druha_karticka
     x1, y1 = prvni_karticka
-    prvni_cislo = karticky[y1, y2]
+    prvni_cislo = karticky[y1][y2]
     x2, y2 = druha_karticka
-    druhe_cislo = karticky[y1, y2]
+    druhe_cislo = karticky[y1][y2]
     if prvni_cislo == druhe_cislo:
         karticky[y1][x1] = -1
         karticky[y2][x2] = -1
@@ -63,6 +65,12 @@ while run:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mx, my = event.pos
+            karticka = mx // 170, my // 170
+            if prvni_karticka == (-1, -1):
+                prvni_karticka = karticka
+            elif prvni_karticka != karticka:
+                druha_karticka = karticka
+                kontrola_karticek()
             print(mx, my)
             x, y = mx // 170, my // 170
             print(x, y)
