@@ -50,10 +50,11 @@ def kontrola_karticek():
 hodiny = pygame.time.Clock()
 
 def cekani():
-    while True:
-        for i in range(60):
-            pygame.event.pump()
-            hodiny.tick(60)
+    for tick in range(60):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+        hodiny.tick(60)
 
 def smycka():
     run = True
