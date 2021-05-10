@@ -1,3 +1,5 @@
+import random
+
 import pygame
 pygame.init()
 
@@ -17,6 +19,14 @@ druha_karticka = (-1, -1)
 
 def michani_karticek():
     pass
+
+def volna_pozice():
+    y = random.randint(0, 3)
+    x = random.randint(0, 3)
+    while mapa[y][x] > 0:
+        y = random.randint(0, 3)
+        x = random.randint(0, 3)
+        return y, x
 
 def nacteni_obrazku():
     for index in range(0, 9, 1):
