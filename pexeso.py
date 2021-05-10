@@ -79,4 +79,4 @@ def smycka(prvni_karticka):
                     kontrola_karticek()
 
 nacteni_obrazku()
-smBugfixycka(prvni_karticka)
+smycka(prvni_karticka)
