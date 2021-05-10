@@ -7,7 +7,7 @@ okno = pygame.display.set_mode((700, 700))
 
 obrazky = []
 
-mapa = [
+karticky = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -27,7 +27,7 @@ def michani_karticek():
 def volna_pozice():
     y = random.randint(0, 3)
     x = random.randint(0, 3)
-    while mapa[y][x] > 0:
+    while karticky[y][x] > 0:
         y = random.randint(0, 3)
         x = random.randint(0, 3)
         return y, x
@@ -41,7 +41,7 @@ def kresleni_karticek():
     okno.fill((0, 0, 0))
     for radek in range(0, 4, 1):
         for sloupec in range(0, 4, 1):
-            karticka = mapa[radek][sloupec]
+            karticka = karticky[radek][sloupec]
             if karticka != -1:
                 souradnice = (sloupec * 150 + (sloupec + 1) * 20, (radek * 150 + (radek + 1) * 20))
                 if prvni_karticka == (sloupec, radek) or druha_karticka == (sloupec, radek):
@@ -53,13 +53,13 @@ def kresleni_karticek():
 def kontrola_karticek():
     global prvni_karticka, druha_karticka
     x1, y1 = prvni_karticka
-    prvni_cislo = mapa[y1][x1]
+    prvni_cislo = karticky[y1][x1]
     x2, y2 = druha_karticka
-    druhe_cislo = mapa[y2][x2]
+    druhe_cislo = karticky[y2][x2]
     # odstraneni karticek
     if prvni_cislo == druhe_cislo:
-        mapa[y1][x1] = -1
-        mapa[y2][x2] = -1
+        karticky[y1][x1] = -1
+        karticky[y2][x2] = -1
     # zakryti karticek
     prvni_karticka = (-1, -1)
     druha_karticka = (-1, -1)
