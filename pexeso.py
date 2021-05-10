@@ -1,3 +1,5 @@
+import random
+
 import pygame
 pygame.init()
 
@@ -6,17 +8,29 @@ okno = pygame.display.set_mode((700, 700))
 obrazky = []
 
 karticky = [
-    [1, 2, 5, 7],
-    [5, 6, 3, 4],
-    [6, 7, 8, 3],
-    [8, 4, 2, 1]
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
 ]
 
 prvni_karticka = (-1, -1)
 druha_karticka = (-1, -1)
 
 def michani_karticek():
-    pass
+    for cislo in range(1, 9):
+        y, x = volna_pozice()
+        karticky[y][x] = cislo
+        y, x = volna_pozice()
+        karticky[y][x] = cislo
+
+def volna_pozice():
+    y = random.randint(0, 3)
+    x = random.randint(0, 3)
+    while karticky[y][x] > 0:
+        y = random.randint(0, 3)
+        x = random.randint(0, 3)
+    return y, x
 
 def nacteni_obrazku():
     for index in range(0, 9, 1):
@@ -59,9 +73,12 @@ def cekani():
                 return
         hodiny.tick(60)
 
-def smycka(prvni_karticka):
+def smycka():
+    global prvni_karticka
+    global druha_karticka
     run = True
     while run:
+        kresleni_karticek()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -78,5 +95,6 @@ def smycka(prvni_karticka):
                     cekani()
                     kontrola_karticek()
 
+michani_karticek()
 nacteni_obrazku()
-smycka(prvni_karticka)
+smycka()
