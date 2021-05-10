@@ -1,5 +1,3 @@
-from typing import Any, Tuple, Union, List
-
 import pygame
 from pygame.surface import Surface
 
