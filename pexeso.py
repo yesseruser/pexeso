@@ -47,22 +47,32 @@ def kontrola_karticek():
     prvni_karticka = (-1, -1)
     druha_karticka = (-1, -1)
 
+hodiny = pygame.time.Clock()
+
+def cekani():
+    while True:
+        for i in range(60):
+            pygame.event.pump()
+            hodiny.tick(60)
+
+def smycka():
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mx, my = event.pos
+                karticka = mx // 170, my // 170
+                if prvni_karticka == (-1, -1):
+                    prvni_karticka = karticka
+                elif prvni_karticka != karticka:
+                    druha_karticka = karticka
+                    kresleni_karticek()
+                    cekani()
+                    kontrola_karticek()
+
 nacteni_obrazku()
-
-run = True
-while run:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            run = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mx, my = event.pos
-            karticka = mx // 170, my // 170
-            if prvni_karticka == (-1, -1):
-                prvni_karticka = karticka
-            elif prvni_karticka != karticka:
-                druha_karticka = karticka
-                kontrola_karticek()
-
-    kresleni_karticek()
+smycka()
