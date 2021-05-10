@@ -15,6 +15,9 @@ karticky = [
 prvni_karticka = (-1, -1)
 druha_karticka = (-1, -1)
 
+def michani_karticek():
+    pass
+
 def nacteni_obrazku():
     for index in range(0, 9, 1):
         obrazek = pygame.image.load("obrazky/" + str(index) + ".png")
@@ -56,7 +59,7 @@ def cekani():
                 return
         hodiny.tick(60)
 
-def smycka():
+def smycka(prvni_karticka):
     run = True
     while run:
         for event in pygame.event.get():
@@ -76,4 +79,4 @@ def smycka():
                     kontrola_karticek()
 
 nacteni_obrazku()
-smycka()
+smBugfixycka(prvni_karticka)
