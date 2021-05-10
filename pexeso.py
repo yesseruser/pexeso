@@ -18,7 +18,11 @@ prvni_karticka = (-1, -1)
 druha_karticka = (-1, -1)
 
 def michani_karticek():
-    pass
+    for cislo in range(1, 9):
+        y, x = volna_pozice()
+        karticky[y][x] = cislo
+        y, x = volna_pozice()
+        karticky[y][x] = cislo
 
 def volna_pozice():
     y = random.randint(0, 3)
